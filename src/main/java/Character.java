@@ -1,6 +1,9 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import processing.core.PApplet;
 
 /**
@@ -10,39 +13,52 @@ import processing.core.PApplet;
 public class Character {
 	
 	private MainApplet parent;
-	public float x, y, radius;
 	public int value;
-	
+	public long colour;
 	private String name;
-	private ArrayList<Character> targets;
+	private boolean activate;
+	private Map<Character,Integer> targets;
 
 	public Character(MainApplet parent){
 		this.parent = parent;
 		this.name = "";
-		this.targets =  new ArrayList<Character>();
+		this.targets =  new HashMap<Character,Integer>();
+		this.activate = false;
 		
 	}
 	
-	public Character(MainApplet parent, String name, float x, float y){
+	public Character(MainApplet parent, String name, long color){
 		this.parent = parent;
 		this.name = name;
-		this.x = x;
-		this.y = y;
-		this.radius = 50;
-		this.targets =  new ArrayList<Character>();
+		this.colour = color;
+		this.targets =  new HashMap<Character,Integer>();
+		this.activate = false;
 	}
 
-	public void display(){
-		this.parent.rect(this.x, this.y, 50, 30);
-		this.parent.text(this.name, x, y);
-		this.parent.fill(0,102,153);
+	public void display(int x, int y){
+		this.parent.ellipse(x, y, 30, 30);
+		//this.parent.text(this.name, x, y);
+		this.parent.fill(this.colour);
 	}
 	
-	public void addTarget(Character t){
-		this.targets.add(t);
+	public boolean isActivated(){
+		return this.activate;
 	}
 	
-	public ArrayList<Character> getTargets(){
+	public void changeActivate(){
+		if(this.activate==true) this.activate = false;
+		else this.activate = true;
+	}
+	
+	public void setActivate(boolean b){
+		this.activate = b;
+	}
+	
+	public void addTarget(Character t, int value){
+		this.targets.put(t,value);
+	}
+	
+	public Map<Character,Integer> getTargets(){
 		return this.targets;
 	}
 	

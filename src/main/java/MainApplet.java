@@ -25,6 +25,7 @@ public class MainApplet extends PApplet{
 	
 	public void setup() {
 
+		characters = new ArrayList<Character>();
 		size(width, height);
 		smooth();
 		loadData();
@@ -32,7 +33,18 @@ public class MainApplet extends PApplet{
 	}
 
 	public void draw() {
-
+		int i=1;
+		int x = 35, y = 35;
+		for(Character ch : characters){
+			if(ch.isActivated()==false){
+				ch.display(x*i, y);
+			}
+			i++;
+			if(i>4){
+				i=1;
+				y += 35;
+			}
+		}
 	}
 
 	private void loadData(){
@@ -44,9 +56,9 @@ public class MainApplet extends PApplet{
 			  String str=a.getString("colour");
 			  str = str.substring(1);
 			  long c = Long.parseLong(str,16);
-			  System.out.println(c);
-			 // Character ch = new Character(this, a.getString("name"),(int)(Math.random()*750),(int)(Math.random()*750) );
-			//characters.add(ch);	
+			  //System.out.println(c);
+			  Character ch = new Character(this, a.getString("name"), c);
+			  characters.add(ch);	
 				
 		 }
 		 for(int i=0;i<links.size();i++){
@@ -54,7 +66,7 @@ public class MainApplet extends PApplet{
 			 source = a.getInt("source");
 			 target = a.getInt("target");
 			 value =a.getInt("value");
-			 // characters.get(source).addTarget(characters.get(target));
+			 characters.get(source).addTarget(characters.get(target),value);
 		 }
 	}
 
