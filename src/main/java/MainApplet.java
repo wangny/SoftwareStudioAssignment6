@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -19,19 +20,14 @@ public class MainApplet extends PApplet{
 	JSONObject data;
 	JSONArray nodes, links;
 	private ArrayList<Character> characters;
-	int source;
-	int target;
-	int value;
-	int colour;
+	
 	private final static int width = 1200, height = 650;
 	
 	public void setup() {
-
 		characters = new ArrayList<Character>();
 		size(width, height);
 		smooth();
 		loadData();
-		
 	}
 
 	public void draw() {
@@ -52,10 +48,29 @@ public class MainApplet extends PApplet{
 		noFill();
 		stroke(150, 200, 200);
 		strokeWeight(10);
-		ellipse (700,300, 500,500);
+		ellipse (700,350, 500,500);
+		
+		fill(150, 200, 200);
+		noStroke();
+		rect(1000, 40, 100, 50);
+		rect(1000, 150, 100, 50);
+		fill(255);
+		textSize(23);
+		this.text("Add All", 1005, 75);
+		this.text("Clear All", 1005, 185);
 	}
+	
+	
+	
+	
 
 	private void loadData(){
+		 
+		int source;
+		int target;
+		int value;
+		int colour;
+		
 		 data=loadJSONObject(path+file);
 		 nodes=data.getJSONArray("nodes");
 		 links=data.getJSONArray("links");
@@ -63,9 +78,9 @@ public class MainApplet extends PApplet{
 			  JSONObject a=nodes.getJSONObject(i);
 			  String str=a.getString("colour");
 			  str = str.substring(1);
-			  long c = Long.parseLong(str,16);
+			  //long c = Long.parseLong(str,16);
 			  //System.out.println(c);
-			  Character ch = new Character(this, a.getString("name"), c);
+			  Character ch = new Character(this, a.getString("name"), str);
 			  characters.add(ch);	
 				
 		 }
