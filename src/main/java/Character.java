@@ -1,11 +1,7 @@
 package main.java;
 
-import java.awt.Color;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import processing.core.PApplet;
 
 /**
 * This class is used to store states of the characters in the program.
@@ -21,8 +17,6 @@ public class Character {
 	public String name;
 	private boolean activate;
 	private Map<Character,Integer> targets;
-	int rectX=1000, C_rectY=150, rectlong=100, rectwidth=50;//for clean
-	int  A_rectY=40;//for add
 	boolean C_rectOver,A_rectOver;
 	
 	public Character(MainApplet parent){

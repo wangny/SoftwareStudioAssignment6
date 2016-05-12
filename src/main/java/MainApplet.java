@@ -15,12 +15,14 @@ import controlP5.*;    // import controlP5 library
 @SuppressWarnings("serial")
 public class MainApplet extends PApplet{
 	private String path = "main/resources/";
-	private String file = "starwars-episode-1-interactions.json";
+	private String file;
 	JSONObject data;
 	JSONArray nodes, links;
 	private ArrayList<Character> characters;
 	private ControlP5 cp5;
 	Character chs;
+	private String title;
+	private int episode;
 	private final static int width = 1200, height = 650;
 	
 	private int count;
@@ -30,23 +32,38 @@ public class MainApplet extends PApplet{
 		characters = new ArrayList<Character>();
 		size(width, height);
 		smooth();
-		loadData();
+		
 		cp5=new ControlP5(this);
 		cp5.addButton("Clear")
-			.setLabel("Clear")
-			.setPosition(width-200, height-500)
-			.setSize(100,50);
+			.setLabel("C l e a r")
+			.setPosition(width-250, height-500)
+			.setSize(200,50);
 		cp5.addButton("Add")
-		.setLabel("Add")
-		.setPosition(width-200, height-600)
-		.setSize(100,50);
+			.setLabel("A d d    A l l")
+			.setPosition(width-250, height-600)
+			.setSize(200,50);
+		
+		cp5.getController("Clear")
+	       .getCaptionLabel()
+	       .setSize(22);
+		cp5.getController("Add")
+	       .getCaptionLabel()
+	       .setSize(24);
+	     
 		chs=new Character(this);
 		count = 0;
+		episode = 1;
+		
+		file = "starwars-episode-"+episode+"-interactions.json";
+		title = "Star Wars "+episode;
+		loadData();
 	}
 
 	public void draw() {
 		
 		background(230);
+		textSize(32);
+		text(title, width/2, 30);
 		noFill();
 		stroke(150, 200, 200);
 		strokeWeight(10);
@@ -58,8 +75,7 @@ public class MainApplet extends PApplet{
 		count=0;
 		for(Character ch : characters) if(ch.isActivated()) count++;
 		
-		
-		
+
 		int i=0;
 		double rate = 0; 
 		if(count>0) rate = 360/count; 
@@ -105,6 +121,27 @@ public class MainApplet extends PApplet{
 		}
 	}
 	
+	public void keyPressed(){
+		if(key=='1'){
+			episode = 1;
+		}else if(key=='2'){
+			episode = 2;
+		}else if(key=='3'){
+			episode = 3;
+		}else if(key=='4'){
+			episode = 4;
+		}else if(key=='5'){
+			episode = 5;
+		}else if(key=='6'){
+			episode = 6;
+		}else if(key=='7'){
+			episode = 7;
+		}
+		file = "starwars-episode-"+episode+"-interactions.json";
+		title = "Star Wars "+episode;
+		characters.clear();
+		loadData();
+	}
 	
 	public void Clear(){
 		count = 0;
