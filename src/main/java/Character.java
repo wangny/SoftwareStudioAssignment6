@@ -20,13 +20,15 @@ public class Character {
 	private String name;
 	private boolean activate;
 	private Map<Character,Integer> targets;
-
+	int rectX=1000, C_rectY=150, rectlong=100, rectwidth=50;//for clean
+	int  A_rectY=40;//for add
+	boolean C_rectOver,A_rectOver;
+	
 	public Character(MainApplet parent){
 		this.parent = parent;
 		this.name = "";
 		this.targets =  new HashMap<Character,Integer>();
 		this.activate = false;
-		
 	}
 	
 	public Character(MainApplet parent, String name, String color){
@@ -48,10 +50,8 @@ public class Character {
 		//if(this.activate)this.parent.fill(0);
 		 
 		
-		if(this.parent.mousePressed){
-			this.changeActivate();
-		}
 	}
+	
 
 	public boolean isActivated(){
 		return this.activate;
