@@ -16,6 +16,7 @@ public class Character {
 	private MainApplet parent;
 	public int value;
 	int x,y;
+	int inix,iniy;
 	public int colour;
 	public String name;
 	private boolean activate;
@@ -31,6 +32,7 @@ public class Character {
 		this.activate = false;
 	}
 	
+	@SuppressWarnings("static-access")
 	public Character(MainApplet parent, String name, String color){
 		this.parent = parent;
 		this.name = name;
@@ -39,12 +41,16 @@ public class Character {
 		this.activate = false;
 	}
 
+	public void display(){
+		this.parent.fill(this.colour);
+		this.parent.ellipse(x, y, 50, 50);	
+	}
+	
+	
 	public void display(int x, int y){
 		this.x=x; this.y=y;
 		this.parent.fill(this.colour);
-		this.parent.ellipse(x, y, 50, 50);
-		
-		
+		this.parent.ellipse(x, y, 50, 50);	
 	}
 	
 
@@ -55,10 +61,19 @@ public class Character {
 	public void changeActivate(){
 		if(this.activate==true) this.activate = false;
 		else this.activate = true;
+		
+		if(this.activate==false){
+			this.x = this.inix;
+			this.y = this.iniy;
+		}
 	}
 	
 	public void setActivate(boolean b){
 		this.activate = b;
+		if(b==false){
+			this.x = this.inix;
+			this.y = this.iniy;
+		}
 	}
 	
 	public void addTarget(Character t, int value){

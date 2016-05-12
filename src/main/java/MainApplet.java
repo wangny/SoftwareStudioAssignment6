@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import processing.core.PApplet;
 import processing.data.JSONArray;
@@ -54,31 +55,25 @@ public class MainApplet extends PApplet{
 		fill(150, 200, 200);
 		noStroke();
 		
+		count=0;
+		for(Character ch : characters) if(ch.isActivated()) count++;
+		
+		
+		
 		int i=0;
-		int x = 60, y = 35;
+		double rate = 0; 
+		if(count>0) rate = 360/count; 
 		for(Character ch : characters){
 			if(ch.isActivated()==false){
-				ch.display(35+x*i, y);
-			}//else if(ch.isActivated()==true)ch.display(0,0);
-			i++;
-			if(i>3){
-				i=0;
-				y += 60;
+				ch.display();
+			}else if(ch.isActivated()==true){
+				ch.display((int)(700+250*Math.sin(  Math.toRadians(rate*i)   )), (int)(350+250*Math.cos(Math.toRadians(rate*i) )) );
+				i++;
 			}
 		}
 		
-		i=0;
-		double rate = 0;
-		if(count>0) rate = 360/count;
 		for(Character ch : characters){
-			if(ch.isActivated()==true){
-				ch.display((int)(700+250*Math.sin(rate*i)), (int)(350-250*Math.cos(rate*i)) );
-			}
-			i++;
-		}
-		
-		for(Character ch : characters){
-			if(  Math.abs(this.mouseX - ch.x)<25 && Math.abs(this.mouseY - ch.y)<25 && ch.isActivated()==false){
+			if(  Math.abs(this.mouseX - ch.x)<25 && Math.abs(this.mouseY - ch.y)<25 ){
 				fill(ch.colour);
 				rect(ch.x, ch.y-25, 75, 30);
 				fill(255);
@@ -86,8 +81,30 @@ public class MainApplet extends PApplet{
 				text(ch.name, ch.x, ch.y-10);
 			}
 		}
+		
+		for(Character ch : characters){
+			if(ch.isActivated()==true){
+				Map<Character,Integer> m = ch.getTargets();
+				for(Character c : characters){	
+					if(c.isActivated() && m.containsKey(c)){
+						stroke(0);
+						strokeWeight(m.get(c)/2 + 1);
+						line(ch.x, ch.y, c.x, c.y);
+					}
+				}
+			}
+		}
 	
 	}
+	
+	public void mouseClicked(){
+		for(Character ch : characters){
+			if(  Math.abs(this.mouseX - ch.x)<25 && Math.abs(this.mouseY - ch.y)<25 ){
+				ch.changeActivate();
+			}
+		}
+	}
+	
 	
 	public void Clear(){
 		count = 0;
@@ -95,12 +112,12 @@ public class MainApplet extends PApplet{
 			ch.setActivate(false);
 		
 	}
+	
 	public void Add(){
 		count = characters.size();
 		for(Character ch : characters)
 			ch.setActivate(true);
 	}
-	
 	
 
 	private void loadData(){
@@ -127,6 +144,20 @@ public class MainApplet extends PApplet{
 			 value =a.getInt("value");
 			 characters.get(source).addTarget(characters.get(target),value);
 		 }
+		 
+		 
+		 int i=0;
+		 int x=60,y=35;
+		 for(Character ch : characters){
+			 ch.inix = ch.x = 35+x*i;
+			 ch.iniy = ch.y = y;
+			 i++;
+			 if(i>3){
+				 i=0;
+				 y +=60;
+			 }
+		 }
+		 
 	}
 
 }
