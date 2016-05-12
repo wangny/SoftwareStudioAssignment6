@@ -29,10 +29,10 @@ public class Character {
 		
 	}
 	
-	public Character(MainApplet parent, String name, int color){
+	public Character(MainApplet parent, String name, String color){
 		this.parent = parent;
 		this.name = name;
-		this.colour = this.parent.unhex(this.parent.colour);
+		this.colour = this.parent.unhex(color);
 		this.targets =  new HashMap<Character,Integer>();
 		this.activate = false;
 	}
@@ -41,12 +41,12 @@ public class Character {
 		
 		
 		
-		
+		this.parent.fill(this.colour);
 		this.parent.ellipse(x, y, 30, 30);
 		//this.parent.text(this.name, x, y);
 		//Color aColor = new Color(this.colour);
 		//if(this.activate)this.parent.fill(0);
-		 this.parent.fill(this.colour);
+		 
 		
 		if(this.parent.mousePressed){
 			this.changeActivate();

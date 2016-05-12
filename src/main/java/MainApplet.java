@@ -78,8 +78,6 @@ public class MainApplet extends PApplet{
 			  JSONObject a=nodes.getJSONObject(i);
 			  String str=a.getString("colour");
 			  str = str.substring(1);
-			  //long c = Long.parseLong(str,16);
-			  //System.out.println(c);
 			  Character ch = new Character(this, a.getString("name"), str);
 			  characters.add(ch);	
 				
