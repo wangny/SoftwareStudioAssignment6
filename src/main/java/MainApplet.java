@@ -1,5 +1,7 @@
 package main.java;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
@@ -45,6 +47,16 @@ public class MainApplet extends PApplet{
 				y += 35;
 			}
 		}
+		/*Graphics g = null;
+		g.setColor(Color.red);	*/
+		noFill();
+		stroke(150, 200, 200);
+		strokeWeight(10);
+		ellipse (700,300, 500,500);
+		
+		
+		
+		 
 	}
 
 	private void loadData(){
