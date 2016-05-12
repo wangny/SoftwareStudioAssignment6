@@ -42,7 +42,7 @@ public class Character {
 		
 		
 		this.parent.fill(this.colour);
-		this.parent.ellipse(x, y, 30, 30);
+		this.parent.ellipse(x, y, 50, 50);
 		//this.parent.text(this.name, x, y);
 		//Color aColor = new Color(this.colour);
 		//if(this.activate)this.parent.fill(0);

@@ -31,16 +31,19 @@ public class MainApplet extends PApplet{
 	}
 
 	public void draw() {
-		int i=1;
-		int x = 35, y = 35;
+		
+		background(230);
+		
+		int i=0;
+		int x = 60, y = 35;
 		for(Character ch : characters){
 			if(ch.isActivated()==false){
-				ch.display(x*i, y);
+				ch.display(35+x*i, y);
 			}
 			i++;
-			if(i>4){
-				i=1;
-				y += 35;
+			if(i>3){
+				i=0;
+				y += 60;
 			}
 		}
 		/*Graphics g = null;
