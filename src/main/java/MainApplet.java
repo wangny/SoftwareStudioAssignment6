@@ -58,6 +58,15 @@ public class MainApplet extends PApplet{
 				y += 60;
 			}
 		}
+		for(Character ch : characters){
+			if(  Math.abs(this.mouseX - ch.x)<25 && Math.abs(this.mouseY - ch.y)<25 && ch.isActivated()==false){
+				fill(ch.colour);
+				rect(ch.x, ch.y-25, 75, 30);
+				fill(255);
+				textSize(14);
+				text(ch.name, ch.x, ch.y-10);
+			}
+		}
 		/*Graphics g = null;
 		g.setColor(Color.red);	*/
 		noFill();

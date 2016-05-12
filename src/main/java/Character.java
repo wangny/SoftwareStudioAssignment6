@@ -15,9 +15,9 @@ public class Character {
 	
 	private MainApplet parent;
 	public int value;
-	//String colour;
+	int x,y;
 	public int colour;
-	private String name;
+	public String name;
 	private boolean activate;
 	private Map<Character,Integer> targets;
 	int rectX=1000, C_rectY=150, rectlong=100, rectwidth=50;//for clean
@@ -40,15 +40,10 @@ public class Character {
 	}
 
 	public void display(int x, int y){
-		
-		
-		
+		this.x=x; this.y=y;
 		this.parent.fill(this.colour);
 		this.parent.ellipse(x, y, 50, 50);
-		//this.parent.text(this.name, x, y);
-		//Color aColor = new Color(this.colour);
-		//if(this.activate)this.parent.fill(0);
-		 
+		
 		
 	}
 	
