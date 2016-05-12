@@ -53,10 +53,6 @@ public class MainApplet extends PApplet{
 		stroke(150, 200, 200);
 		strokeWeight(10);
 		ellipse (700,300, 500,500);
-		
-		
-		
-		 
 	}
 
 	private void loadData(){
