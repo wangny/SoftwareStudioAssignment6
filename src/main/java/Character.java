@@ -32,23 +32,27 @@ public class Character {
 	public Character(MainApplet parent, String name, int color){
 		this.parent = parent;
 		this.name = name;
-		this.colour = color;
+		this.colour = this.parent.unhex(this.parent.colour);
 		this.targets =  new HashMap<Character,Integer>();
 		this.activate = false;
 	}
 
 	public void display(int x, int y){
+		
+		
+		
+		
 		this.parent.ellipse(x, y, 30, 30);
 		//this.parent.text(this.name, x, y);
 		//Color aColor = new Color(this.colour);
-		if(this.activate)this.parent.fill(0);
-		else this.parent.fill(255);
+		//if(this.activate)this.parent.fill(0);
+		 this.parent.fill(this.colour);
 		
 		if(this.parent.mousePressed){
 			this.changeActivate();
 		}
 	}
-	
+
 	public boolean isActivated(){
 		return this.activate;
 	}
