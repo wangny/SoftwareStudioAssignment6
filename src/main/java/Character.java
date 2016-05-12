@@ -1,5 +1,6 @@
 package main.java;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,8 @@ public class Character {
 	
 	private MainApplet parent;
 	public int value;
-	public long colour;
+	//String colour;
+	public int colour;
 	private String name;
 	private boolean activate;
 	private Map<Character,Integer> targets;
@@ -27,7 +29,7 @@ public class Character {
 		
 	}
 	
-	public Character(MainApplet parent, String name, long color){
+	public Character(MainApplet parent, String name, int color){
 		this.parent = parent;
 		this.name = name;
 		this.colour = color;
@@ -38,7 +40,13 @@ public class Character {
 	public void display(int x, int y){
 		this.parent.ellipse(x, y, 30, 30);
 		//this.parent.text(this.name, x, y);
-		this.parent.fill(this.colour);
+		//Color aColor = new Color(this.colour);
+		if(this.activate)this.parent.fill(0);
+		else this.parent.fill(255);
+		
+		if(this.parent.mousePressed){
+			this.changeActivate();
+		}
 	}
 	
 	public boolean isActivated(){
