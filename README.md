@@ -1,20 +1,23 @@
-# Software Studio Assignment 6
-
-## Notes
-+ You will have to import the libraries on your own. All the libraries are provided on iLMS.
-+ Even you followed the design TA shown in the video, you still have to explain the control of the program in the next section.
-
-## Explanation of the Design
-Explain your design in this section.  
-Example:
+##Explanation of the Design
+1.Main並沒有修改到，至於Network沒有用到，所以予以刪除。
+2.Character主要是針對人物圓圈顯示的部分，初始先設定它的顏色、名字。
+	display()將它顯示在他初始的位置上。
+	dislpay(int,int)則是當該圓圈移動時更改位置將其放在大圓上。
+	active顯示圓圈當前的狀態，false會放在初始位置true放置在大圓之上。
+3.MainApplet負責剩餘的動作。
+	setup()裡面以ControlP5加入兩個按鈕"ADD"和"CLEAR"，還有其他初始的設定。
+	draw()裡面放入了大圓，用三角函數來取得不同的小圓要放置在大圓上的位置、當滑鼠的位置在小圓之上時所要被顯示的名字、以及當兩個以上的小圓被放置在大圓上時所應該被顯示的關係線的設定。
+	mouseClicked()更改當小圓被點到時的狀態（被放入大圓或放回初始位置）。
+	Clear()將所有的小圓狀態改成false(放回初始位置)。
+	ADD()將所有小圓狀態改成true(放到大圓上)。
+	loadData()使用上課教讀JSON檔的方式，將需要的JSAON檔讀入，分別存取人物名字、權重、顏色等資料，最後再將各人物圓圈放在初始位置上。
 ### Operation
-+ Clicking on the button "Add All": users can add all the characters into network to be analyzed.
-+ Clicking on the button "Clear": users can remove all the characters from network.
-+ Hovering on the character: the name of the character will be revealed.
-+ By dragging the little circle and drop it in the big circle, the character will be added to the network.
-+ By pressing key 1~7 on the keyboard, users can switch between episodes.
-+ ...etc.
-
-### Visualization
-+ The width of each link is visualized based on the value of the link.
-+ ...etc.
+1.按下"ADD"就可以將所有的人物圓圈放入左側的大圓圈上，並以線顯示其關聯性(線因關係的遠近而有粗細之分)
+2.按下"CLEAR"則是將所有的人物圓圈放回原本的位置上。
+3.點一下人物圓圈就可以將其放入左側的圓圈中，再按一下就可以放回原本的位置。
+4.當滑鼠放置在人物圓圈上時，會顯示該人物的名稱。
+5.按下數字鍵(1~7)就可以更改STAR_WAR的集數。
+####Visualization
+1.當人物圓圈放在大圓上時，跟他有關係的人會跟他用線連起來，關係越近線越粗。
+2.每個人物會有自己的顏色，名字的顯示也是。
+3.當人物被放置在大園上時，會依照放置的個數整齊地放置在大園上。
